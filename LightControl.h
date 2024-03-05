@@ -4,8 +4,6 @@
 #ifndef LightControl_h
 #define LightControl_h
 
-#include "Arduino.h"
-
 class LightControl
 {
 public:
@@ -23,6 +21,15 @@ public:
 
   void update();
   void updateAmbers();
+
+  enum MODE
+  {
+    OFF = -1,
+    READY = 0,
+    L_BLINK = 1,
+    R_BLINK = 2,
+    HAZARDS = 3
+  };
 
 private:
   int _mode;

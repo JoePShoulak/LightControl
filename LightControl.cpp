@@ -1,12 +1,5 @@
-#include "Arduino.h"
 #include "LightControl.h"
 #include <SimpleTimer.h>
-
-#define OFF -1
-#define DEFAULT 0
-#define L_BLINK 1
-#define R_BLINK 2
-#define HAZARDS 3
 
 #define BLINKRATE 500
 
@@ -28,8 +21,6 @@ void LightControl::begin()
   _front.begin();
   _back.begin();
   _spot.begin();
-
-  _front.on();
 }
 
 void LightControl::on()
@@ -72,13 +63,13 @@ void LightControl::updateAmbers()
 
   switch (_mode)
   {
-  case L_BLINK:
+  case MODE::L_BLINK:
     _left.set(_blink);
     break;
-  case R_BLINK:
+  case MODE::R_BLINK:
     _right.set(_blink);
     break;
-  case HAZARDS:
+  case MODE::HAZARDS:
     _left.set(_blink);
     _right.set(_blink);
     break;
@@ -91,12 +82,12 @@ void LightControl::updateAmbers()
 
 void LightControl::update()
 {
-  if (_mode == OFF)
+  if (_mode == MODE::OFF)
     return this->off();
 
   _front.on();
   _back.set(_brakes);
-  _front.set(_spots);
+  _spot.set(_spots);
 
   if (!_timer.isReady())
     return;
