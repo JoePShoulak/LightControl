@@ -57,6 +57,16 @@ void LightControl::setBrakes(bool brakes)
 
 void LightControl::updateAmbers()
 {
+  if (_mode == MODE::READY)
+  {
+    _leftLight.off();
+    _rightLight.off();
+    return;
+  }
+
+  if (!_timer.isReady())
+    return;
+
   _timer.reset();
   _blink_status = !_blink_status;
 
@@ -83,16 +93,6 @@ void LightControl::update()
   _frontLight.on();
   _backLight.set(_brake_status);
   // _spotLight.set(_spots_status);
-
-  if (_mode == MODE::READY)
-  {
-    _leftLight.off();
-    _rightLight.off();
-    return;
-  }
-
-  if (!_timer.isReady())
-    return;
 
   this->updateAmbers();
 }
