@@ -14,8 +14,8 @@ public:
   virtual void off();
 
   void setMode(int mode);
-  void setBrakes(bool status);
-  // void setSpots(bool status);
+  void setBrakes(bool state);
+  // void setSpots(bool state);
 
   virtual void update();
   void updateAmbers();
@@ -31,9 +31,9 @@ public:
 
 private:
   int _mode;
-  bool _blink_status;
-  bool _brake_status;
-  // bool _spots_status;
+  bool _blinkState;
+  bool _brakeState;
+  // bool _spotState;
 
   SimpleTimer _timer;
 
