@@ -13,8 +13,7 @@ void Light::begin()
 
 void Light::set(bool state)
 {
-  _state = state;
-  digitalWrite(_pin, _state);
+  digitalWrite(_pin, state);
 }
 
 void Light::on()

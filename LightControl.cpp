@@ -1,8 +1,8 @@
 #include "LightControl.h"
 #include <SimpleTimer.h>
 
-// LightControl::LightControl(int leftPin, int rightPin, int frontPin, int backPin, int spotPin)
-LightControl::LightControl(int leftPin, int rightPin, int frontPin, int backPin)
+// LightControl::LightControl(int leftPin, int rightPin, int frontPin, int backPin, int spotPin, int blinkRate = 500)
+LightControl::LightControl(int leftPin, int rightPin, int frontPin, int backPin, int blinkRate = 500)
 {
   _leftLight = Light(leftPin);
   _rightLight = Light(rightPin);
@@ -10,7 +10,7 @@ LightControl::LightControl(int leftPin, int rightPin, int frontPin, int backPin)
   _backLight = Light(backPin);
   // _spotLight = Light(spotPin);
 
-  _timer = SimpleTimer(BLINKRATE);
+  _timer = SimpleTimer(blinkRate);
 }
 
 void LightControl::begin()
@@ -36,15 +36,27 @@ void LightControl::setMode(int mode)
   _mode = mode;
 }
 
-void LightControl::setBrakes(bool brakes)
+void LightControl::setBrakes(bool status)
 {
-  _brake_status = brakes;
+  _brake_status = status;
 }
 
-// void LightControl::setSpots(bool spots)
+// void LightControl::setSpots(bool status)
 // {
-//   _spots_status = spots;
+//   _spots_status = status;
 // }
+
+void LightControl::update()
+{
+  if (_mode == MODE::OFF)
+    return this->off();
+
+  _frontLight.on();
+  _backLight.set(_brake_status);
+  // _spotLight.set(_spots_status);
+
+  this->updateAmbers();
+}
 
 void LightControl::updateAmbers()
 {
@@ -74,16 +86,4 @@ void LightControl::updateAmbers()
     _rightLight.set(_blink_status);
     break;
   }
-}
-
-void LightControl::update()
-{
-  if (_mode == MODE::OFF)
-    return this->off();
-
-  _frontLight.on();
-  _backLight.set(_brake_status);
-  // _spotLight.set(_spots_status);
-
-  this->updateAmbers();
 }
