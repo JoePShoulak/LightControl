@@ -1,44 +1,43 @@
 #include "LightControl.h"
 #include <SimpleTimer.h>
 
-#define BLINKRATE 500
-
-LightControl::LightControl(int leftPin, int rightPin, int frontPin, int backPin, int spotPin)
+// LightControl::LightControl(int leftPin, int rightPin, int frontPin, int backPin, int spotPin)
+LightControl::LightControl(int leftPin, int rightPin, int frontPin, int backPin)
 {
-  _left = Light(leftPin);
-  _right = Light(rightPin);
-  _front = Light(frontPin);
-  _back = Light(backPin);
-  _spot = Light(spotPin);
+  _leftLight = Light(leftPin);
+  _rightLight = Light(rightPin);
+  _frontLight = Light(frontPin);
+  _backLight = Light(backPin);
+  // _spotLight = Light(spotPin);
 
   _timer = SimpleTimer(BLINKRATE);
 }
 
 void LightControl::begin()
 {
-  _left.begin();
-  _right.begin();
-  _front.begin();
-  _back.begin();
-  _spot.begin();
+  _leftLight.begin();
+  _rightLight.begin();
+  _frontLight.begin();
+  _backLight.begin();
+  // _spotLight.begin();
 }
 
 void LightControl::on()
 {
-  _left.on();
-  _right.on();
-  _front.on();
-  _back.on();
-  _spot.on();
+  _leftLight.on();
+  _rightLight.on();
+  _frontLight.on();
+  _backLight.on();
+  // _spotLight.on();
 }
 
 void LightControl::off()
 {
-  _left.off();
-  _right.off();
-  _front.off();
-  _back.off();
-  _spot.off();
+  _leftLight.off();
+  _rightLight.off();
+  _frontLight.off();
+  _backLight.off();
+  // _spotLight.off();
 }
 
 void LightControl::setMode(int mode)
@@ -48,34 +47,30 @@ void LightControl::setMode(int mode)
 
 void LightControl::setBrakes(bool brakes)
 {
-  _brakes = brakes;
+  _brake_status = brakes;
 }
 
-void LightControl::setSpots(bool spots)
-{
-  _spots = spots;
-}
+// void LightControl::setSpots(bool spots)
+// {
+//   _spots_status = spots;
+// }
 
 void LightControl::updateAmbers()
 {
   _timer.reset();
-  _blink = !_blink;
+  _blink_status = !_blink_status;
 
   switch (_mode)
   {
   case MODE::L_BLINK:
-    _left.set(_blink);
+    _leftLight.set(_blink_status);
     break;
   case MODE::R_BLINK:
-    _right.set(_blink);
+    _rightLight.set(_blink_status);
     break;
   case MODE::HAZARDS:
-    _left.set(_blink);
-    _right.set(_blink);
-    break;
-  default:
-    _left.off();
-    _right.off();
+    _leftLight.set(_blink_status);
+    _rightLight.set(_blink_status);
     break;
   }
 }
@@ -85,9 +80,16 @@ void LightControl::update()
   if (_mode == MODE::OFF)
     return this->off();
 
-  _front.on();
-  _back.set(_brakes);
-  _spot.set(_spots);
+  _frontLight.on();
+  _backLight.set(_brake_status);
+  // _spotLight.set(_spots_status);
+
+  if (_mode == MODE::READY)
+  {
+    _leftLight.off();
+    _rightLight.off();
+    return;
+  }
 
   if (!_timer.isReady())
     return;

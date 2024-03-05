@@ -5,10 +5,11 @@ class Light
 {
 public:
   Light(int pin = 2);
+
   void begin();
   void on();
   void off();
-  void toggle();
+
   void set(bool state);
 
 private:

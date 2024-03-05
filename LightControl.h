@@ -6,20 +6,21 @@
 
 class LightControl
 {
+  int BLINKRATE = 500;
+
 public:
-  LightControl(int leftPin, int rightPin, int frontPin, int backPin, int spotPin);
-  void begin();
+  // LightControl(int leftPin, int rightPin, int frontPin, int backPin, int spotPin);
+  LightControl(int leftPin, int rightPin, int frontPin, int backPin);
 
-  void on();
-  void off();
+  virtual void begin();
+  virtual void on();
+  virtual void off();
 
-  int getMode();
   void setMode(int mode);
-
   void setBrakes(bool brakes);
-  void setSpots(bool spots);
+  // void setSpots(bool spots);
 
-  void update();
+  virtual void update();
   void updateAmbers();
 
   enum MODE
@@ -33,17 +34,17 @@ public:
 
 private:
   int _mode;
-  bool _blink;
-  bool _brakes;
-  bool _spots;
+  bool _blink_status;
+  bool _brake_status;
+  // bool _spots_status;
 
   SimpleTimer _timer;
 
-  Light _left;
-  Light _right;
-  Light _front;
-  Light _back;
-  Light _spot;
+  Light _leftLight;
+  Light _rightLight;
+  Light _frontLight;
+  Light _backLight;
+  // Light _spotLight;
 };
 
 #endif
