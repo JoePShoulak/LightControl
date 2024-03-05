@@ -4,7 +4,6 @@
 Light::Light(int pin)
 {
   _pin = pin;
-  _state = false;
 }
 
 void Light::begin()

@@ -7,10 +7,10 @@ public:
   Light(int pin = 2);
 
   void begin();
-  void on();
-  void off();
 
   void set(bool state);
+  void on();
+  void off();
 
 private:
   int _pin;

@@ -13,7 +13,6 @@ public:
   LightControl(int leftPin, int rightPin, int frontPin, int backPin);
 
   virtual void begin();
-  virtual void on();
   virtual void off();
 
   void setMode(int mode);

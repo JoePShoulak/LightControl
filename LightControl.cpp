@@ -22,15 +22,6 @@ void LightControl::begin()
   // _spotLight.begin();
 }
 
-void LightControl::on()
-{
-  _leftLight.on();
-  _rightLight.on();
-  _frontLight.on();
-  _backLight.on();
-  // _spotLight.on();
-}
-
 void LightControl::off()
 {
   _leftLight.off();
