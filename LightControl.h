@@ -11,6 +11,7 @@ public:
   LightControl(int leftPin, int rightPin, int frontPin, int backPin, int blinkRate = 500);
 
   virtual void begin();
+  virtual void set(bool state);
   virtual void off();
 
   void setMode(int mode);
@@ -18,15 +19,16 @@ public:
   // void setSpots(bool state);
 
   virtual void update();
-  void updateAmbers();
+  void updateBlinkers();
 
   enum MODE
   {
     OFF,
-    READY,
+    RUNNING,
     L_BLINK,
     R_BLINK,
-    HAZARDS
+    HAZARDS,
+    DISABLED
   };
 
 private:

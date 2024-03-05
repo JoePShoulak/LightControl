@@ -22,13 +22,18 @@ void LightControl::begin()
   // _spotLight.begin();
 }
 
+void LightControl::set(bool state)
+{
+  _leftLight.set(state);
+  _rightLight.set(state);
+  _frontLight.set(state);
+  _backLight.set(state);
+  // _spotLight.set(state);
+}
+
 void LightControl::off()
 {
-  _leftLight.off();
-  _rightLight.off();
-  _frontLight.off();
-  _backLight.off();
-  // _spotLight.off();
+  this->set(LOW);
 }
 
 void LightControl::setMode(int mode)
@@ -51,16 +56,19 @@ void LightControl::update()
   if (_mode == MODE::OFF)
     return this->off();
 
-  _frontLight.on();
-  _backLight.set(_brakeState);
-  // _spotLight.set(_spotState);
+  if (_mode != MODE::DISABLED)
+  {
+    _frontLight.on();
+    _backLight.set(_brakeState);
+    // _spotLight.set(_spotState);
+  }
 
-  this->updateAmbers();
+  this->updateBlinkers();
 }
 
-void LightControl::updateAmbers()
+void LightControl::updateBlinkers()
 {
-  if (_mode == MODE::READY)
+  if (_mode == MODE::RUNNING)
   {
     _leftLight.off();
     _rightLight.off();
@@ -84,6 +92,9 @@ void LightControl::updateAmbers()
   case MODE::HAZARDS:
     _leftLight.set(_blinkState);
     _rightLight.set(_blinkState);
+    break;
+  case MODE::DISABLED:
+    this->set(_blinkState);
     break;
   }
 }
