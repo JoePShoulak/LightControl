@@ -11,7 +11,7 @@ public:
 
   virtual void begin();
   virtual void set(bool state);
-  virtual void off();
+  void off();
 
   void setMode(int mode);
   void setBrakes(bool state);
