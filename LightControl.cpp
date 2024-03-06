@@ -4,31 +4,31 @@
 // LightControl::LightControl(int leftPin, int rightPin, int frontPin, int backPin, int spotPin, int blinkRate = 500)
 LightControl::LightControl(int leftPin, int rightPin, int frontPin, int backPin, int blinkRate = 500)
 {
-  _leftLight = Light(leftPin);
-  _rightLight = Light(rightPin);
-  _frontLight = Light(frontPin);
-  _backLight = Light(backPin);
-  // _spotLight = Light(spotPin);
+  _left = Light(leftPin);
+  _right = Light(rightPin);
+  _front = Light(frontPin);
+  _back = Light(backPin);
+  // _spot = Light(spotPin);
 
   _timer = SimpleTimer(blinkRate);
 }
 
 void LightControl::begin()
 {
-  _leftLight.begin();
-  _rightLight.begin();
-  _frontLight.begin();
-  _backLight.begin();
-  // _spotLight.begin();
+  _left.begin();
+  _right.begin();
+  _front.begin();
+  _back.begin();
+  // _spot.begin();
 }
 
 void LightControl::set(bool state)
 {
-  _leftLight.set(state);
-  _rightLight.set(state);
-  _frontLight.set(state);
-  _backLight.set(state);
-  // _spotLight.set(state);
+  _left.set(state);
+  _right.set(state);
+  _front.set(state);
+  _back.set(state);
+  // _spot.set(state);
 }
 
 void LightControl::off()
@@ -46,7 +46,7 @@ void LightControl::setBrakes(bool state)
   _brakeState = state;
 }
 
-// void LightControl::setSpots(bool state)
+// void LightControl::setSpot(bool state)
 // {
 //   _spotState = state;
 // }
@@ -58,9 +58,9 @@ void LightControl::update()
 
   if (_mode != MODE::DISABLED)
   {
-    _frontLight.on();
-    _backLight.set(_brakeState);
-    // _spotLight.set(_spotState);
+    _front.on();
+    _back.set(_brakeState);
+    // _spot.set(_spotState);
   }
 
   this->updateBlinkers();
@@ -70,8 +70,8 @@ void LightControl::updateBlinkers()
 {
   if (_mode == MODE::RUNNING)
   {
-    _leftLight.off();
-    _rightLight.off();
+    _left.off();
+    _right.off();
     return;
   }
 
@@ -84,16 +84,16 @@ void LightControl::updateBlinkers()
   switch (_mode)
   {
   case MODE::L_BLINK:
-    _leftLight.set(_blinkState);
+    _left.set(_blinkState);
     break;
   case MODE::R_BLINK:
-    _rightLight.set(_blinkState);
+    _right.set(_blinkState);
     break;
   case MODE::HAZARDS:
-    _leftLight.set(_blinkState);
-    _rightLight.set(_blinkState);
+    _left.set(_blinkState);
+    _right.set(_blinkState);
     break;
-  case MODE::DISABLED:
+  default: // DISABLED or invalid
     this->set(_blinkState);
     break;
   }

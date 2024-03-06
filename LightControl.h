@@ -16,7 +16,7 @@ public:
 
   void setMode(int mode);
   void setBrakes(bool state);
-  // void setSpots(bool state);
+  // void setSpot(bool state);
 
   virtual void update();
   void updateBlinkers();
@@ -39,10 +39,10 @@ private:
 
   SimpleTimer _timer;
 
-  Light _leftLight;
-  Light _rightLight;
-  Light _frontLight;
-  Light _backLight;
+  Light _left;
+  Light _right;
+  Light _front;
+  Light _back;
   // Light _spotLight;
 };
 
