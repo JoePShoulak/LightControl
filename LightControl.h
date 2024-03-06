@@ -43,7 +43,7 @@ private:
   Light _right;
   Light _front;
   Light _back;
-  // Light _spotLight;
+  // Light _spot;
 };
 
 #endif
