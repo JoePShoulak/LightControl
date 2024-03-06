@@ -57,7 +57,7 @@ void BasicLights::updateBlinkers()
     return;
 
   _timer.reset();
-  _blinkState = !_blinkState;
+  _blinkState ^= true;
 
   switch (_mode)
   {

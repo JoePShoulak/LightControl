@@ -8,9 +8,8 @@ StreetLights::StreetLights(int frontPin, int backPin, int leftPin, int rightPin,
   _left = Light(leftPin);
   _right = Light(rightPin);
 
-  _amberDefault = amberDefault;
-
   _timer = SimpleTimer(blinkRate);
+  _amberDefault = amberDefault;
 }
 
 void StreetLights::begin()
@@ -71,7 +70,7 @@ void StreetLights::updateBlinkers()
     return;
 
   _timer.reset();
-  _blinkState = !_blinkState;
+  _blinkState ^= true;
 
   switch (_mode)
   {

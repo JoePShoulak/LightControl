@@ -9,9 +9,8 @@ OffroadLights::OffroadLights(int frontPin, int backPin, int leftPin, int rightPi
   _right = Light(rightPin);
   _spot = Light(spotPin);
 
-  _amberDefault = amberDefault;
-
   _timer = SimpleTimer(blinkRate);
+  _amberDefault = amberDefault;
 }
 
 void OffroadLights::begin()
@@ -80,7 +79,7 @@ void OffroadLights::updateBlinkers()
     return;
 
   _timer.reset();
-  _blinkState = !_blinkState;
+  _blinkState ^= true;
 
   switch (_mode)
   {
