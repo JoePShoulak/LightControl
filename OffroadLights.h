@@ -7,7 +7,7 @@
 class OffroadLights
 {
 public:
-  OffroadLights(int frontPin, int backPin, int leftPin, int rightPin, int spotPin, int blinkRate = 500);
+  OffroadLights(int frontPin, int backPin, int leftPin, int rightPin, int spotPin, int blinkRate = 500, bool amberDefault = false);
 
   virtual void begin();
   virtual void set(bool state);
@@ -35,6 +35,7 @@ private:
   bool _blinkState;
   bool _brakeState;
   bool _spotState;
+  bool _amberDefault;
 
   SimpleTimer _timer;
 

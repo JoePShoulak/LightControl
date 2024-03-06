@@ -41,10 +41,11 @@ void BasicLights::update()
   if (_mode == MODE::OFF)
     return this->off();
 
-  if (_mode != MODE::DISABLED)
+  if (_mode == MODE::RUNNING)
   {
     _front.on();
     _back.set(_brakeState);
+    return;
   }
 
   this->updateBlinkers();
@@ -61,6 +62,7 @@ void BasicLights::updateBlinkers()
   switch (_mode)
   {
   case MODE::HAZARDS:
+    _front.on();
     _back.set(_blinkState);
     break;
   default: // DISABLED or invalid

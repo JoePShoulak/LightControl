@@ -1,12 +1,14 @@
 #include "StreetLights.h"
 #include <SimpleTimer.h>
 
-StreetLights::StreetLights(int frontPin, int backPin, int leftPin, int rightPin, int blinkRate = 500)
+StreetLights::StreetLights(int frontPin, int backPin, int leftPin, int rightPin, int blinkRate = 500, bool amberDefault = false)
 {
   _front = Light(frontPin);
   _back = Light(backPin);
   _left = Light(leftPin);
   _right = Light(rightPin);
+
+  _amberDefault = amberDefault;
 
   _timer = SimpleTimer(blinkRate);
 }
@@ -60,8 +62,8 @@ void StreetLights::updateBlinkers()
 {
   if (_mode == MODE::RUNNING)
   {
-    _left.off();
-    _right.off();
+    _left.set(_amberDefault);
+    _right.set(_amberDefault);
     return;
   }
 

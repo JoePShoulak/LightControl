@@ -1,13 +1,15 @@
 #include "OffroadLights.h"
 #include <SimpleTimer.h>
 
-OffroadLights::OffroadLights(int frontPin, int backPin, int leftPin, int rightPin, int spotPin, int blinkRate = 500)
+OffroadLights::OffroadLights(int frontPin, int backPin, int leftPin, int rightPin, int spotPin, int blinkRate = 500, bool amberDefault = false)
 {
   _front = Light(frontPin);
   _back = Light(backPin);
   _left = Light(leftPin);
   _right = Light(rightPin);
   _spot = Light(spotPin);
+
+  _amberDefault = amberDefault;
 
   _timer = SimpleTimer(blinkRate);
 }
@@ -69,8 +71,8 @@ void OffroadLights::updateBlinkers()
 {
   if (_mode == MODE::RUNNING)
   {
-    _left.off();
-    _right.off();
+    _left.set(_amberDefault);
+    _right.set(_amberDefault);
     return;
   }
 
