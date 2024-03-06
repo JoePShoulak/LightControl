@@ -1,5 +1,5 @@
-#include "Light.h"
 #include <SimpleTimer.h>
+#include "Light.h"
 
 #ifndef BasicLights_h
 #define BasicLights_h

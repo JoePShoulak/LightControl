@@ -1,5 +1,5 @@
-#include "Light.h"
 #include <SimpleTimer.h>
+#include "Light.h"
 
 #ifndef StreetLights_h
 #define StreetLights_h

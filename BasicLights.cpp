@@ -1,5 +1,5 @@
-#include "BasicLights.h"
 #include <SimpleTimer.h>
+#include "BasicLights.h"
 
 BasicLights::BasicLights(int frontPin, int backPin, int blinkRate = 500)
 {

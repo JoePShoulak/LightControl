@@ -1,5 +1,5 @@
-#include "OffroadLights.h"
 #include <SimpleTimer.h>
+#include "OffroadLights.h"
 
 OffroadLights::OffroadLights(int frontPin, int backPin, int leftPin, int rightPin, int spotPin, int blinkRate = 500, bool amberDefault = false)
 {
