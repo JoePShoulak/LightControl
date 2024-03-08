@@ -18,6 +18,9 @@ void StreetLights::begin()
   _back.begin();
   _left.begin();
   _right.begin();
+
+  _left.set(_amberDefault);
+  _right.set(_amberDefault);
 }
 
 void StreetLights::set(bool state)

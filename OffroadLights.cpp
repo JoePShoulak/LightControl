@@ -20,6 +20,9 @@ void OffroadLights::begin()
   _left.begin();
   _right.begin();
   _spot.begin();
+
+  _left.set(_amberDefault);
+  _right.set(_amberDefault);
 }
 
 void OffroadLights::set(bool state)
