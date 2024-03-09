@@ -31,10 +31,10 @@ void StreetLights::set(bool state)
 
 void StreetLights::update()
 {
-  if (_mode == MODE::OFF)
+  if (_mode == LightMode::OFF)
     return this->off();
 
-  if (_mode != MODE::DISABLED)
+  if (_mode != LightMode::DISABLED)
   {
     _front.on();
     _back.set(_brakeState);
@@ -45,7 +45,7 @@ void StreetLights::update()
 
 void StreetLights::updateBlinkers()
 {
-  if (_mode == MODE::RUNNING)
+  if (_mode == LightMode::RUNNING)
   {
     _left.set(_amberDefault);
     _right.set(_amberDefault);
@@ -60,13 +60,13 @@ void StreetLights::updateBlinkers()
 
   switch (_mode)
   {
-  case MODE::L_BLINK:
+  case LightMode::L_BLINK:
     _left.set(_blinkState);
     break;
-  case MODE::R_BLINK:
+  case LightMode::R_BLINK:
     _right.set(_blinkState);
     break;
-  case MODE::HAZARDS:
+  case LightMode::HAZARDS:
     _left.set(_blinkState);
     _right.set(_blinkState);
     break;

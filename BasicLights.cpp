@@ -38,10 +38,10 @@ void BasicLights::setBrakes(bool state)
 
 void BasicLights::update()
 {
-  if (_mode == MODE::OFF)
+  if (_mode == LightMode::OFF)
     return this->off();
 
-  if (_mode == MODE::RUNNING)
+  if (_mode == LightMode::RUNNING)
   {
     _front.on();
     _back.set(_brakeState);
@@ -61,7 +61,7 @@ void BasicLights::updateBlinkers()
 
   switch (_mode)
   {
-  case MODE::HAZARDS:
+  case LightMode::HAZARDS:
     _front.on();
     _back.set(_blinkState);
     break;

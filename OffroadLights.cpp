@@ -27,10 +27,10 @@ void OffroadLights::setSpot(bool state)
 
 void OffroadLights::update()
 {
-  if (_mode == MODE::OFF)
+  if (_mode == LightMode::OFF)
     return this->off();
 
-  if (_mode != MODE::DISABLED)
+  if (_mode != LightMode::DISABLED)
   {
     _front.on();
     _back.set(_brakeState);

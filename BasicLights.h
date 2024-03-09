@@ -4,7 +4,7 @@
 #ifndef BasicLights_h
 #define BasicLights_h
 
-enum MODE
+enum LightMode
 {
   OFF,
   RUNNING,
