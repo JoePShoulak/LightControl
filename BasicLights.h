@@ -4,6 +4,16 @@
 #ifndef BasicLights_h
 #define BasicLights_h
 
+enum MODE
+{
+  OFF,
+  RUNNING,
+  HAZARDS,
+  DISABLED,
+  L_BLINK,
+  R_BLINK
+};
+
 class BasicLights
 {
 public:
@@ -19,15 +29,7 @@ public:
   virtual void update();
   virtual void updateBlinkers();
 
-  enum MODE
-  {
-    OFF,
-    RUNNING,
-    HAZARDS,
-    DISABLED,
-  };
-
-private:
+protected:
   int _mode;
   bool _blinkState;
   bool _brakeState;

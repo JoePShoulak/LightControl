@@ -2,20 +2,18 @@
 #include "StreetLights.h"
 
 StreetLights::StreetLights(int frontPin, int backPin, int leftPin, int rightPin, int blinkRate = 500, bool amberDefault = false)
+    : BasicLights(frontPin, backPin, blinkRate)
 {
-  _front = Light(frontPin);
-  _back = Light(backPin);
   _left = Light(leftPin);
   _right = Light(rightPin);
 
-  _timer = SimpleTimer(blinkRate);
   _amberDefault = amberDefault;
 }
 
 void StreetLights::begin()
 {
-  _front.begin();
-  _back.begin();
+  BasicLights::begin();
+
   _left.begin();
   _right.begin();
 
@@ -25,25 +23,10 @@ void StreetLights::begin()
 
 void StreetLights::set(bool state)
 {
-  _front.set(state);
-  _back.set(state);
+  BasicLights::set(state);
+
   _left.set(state);
   _right.set(state);
-}
-
-void StreetLights::off()
-{
-  this->set(LOW);
-}
-
-void StreetLights::setMode(int mode)
-{
-  _mode = mode;
-}
-
-void StreetLights::setBrakes(bool state)
-{
-  _brakeState = state;
 }
 
 void StreetLights::update()
