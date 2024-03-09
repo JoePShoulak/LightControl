@@ -6,19 +6,20 @@
 class OffroadLights : public StreetLights
 {
 public:
-  OffroadLights(int frontPin, int backPin, int leftPin, int rightPin, int spotPin, int blinkRate = 500, bool amberDefault = false);
+  OffroadLights(int frontPin, int backPin, int leftPin, int rightPin, int spotPin, // Constructor
+                int blinkRate = 500, bool amberDefault = false);
 
-  virtual void begin() override;
-  virtual void set(bool state) override;
+  virtual void begin() override;         // New begin function for new lights
+  virtual void set(bool state) override; // Same with set
 
-  void setSpot(bool state);
+  void setSpot(bool state); // New function for a new state
 
-  virtual void update() override;
+  virtual void update() override; // New update (updateBlinkers stays the same this time)
 
 protected:
-  bool _spotState;
+  bool _spotState; // New state for the spotlight
 
-  Light _spot;
+  Light _spot; // New Light object for the spotlight
 };
 
 #endif
