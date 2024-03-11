@@ -16,9 +16,6 @@ void StreetLights::begin() // Set all the pinModes to output
 
   _left.begin();  // begin our left light
   _right.begin(); // begin our right light
-
-  _left.set(_amberDefault); // Set our ambers to their default state right away
-  _right.set(_amberDefault);
 }
 
 void StreetLights::set(bool state) // Set all the lights to the same state
