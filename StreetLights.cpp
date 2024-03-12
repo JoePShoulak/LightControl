@@ -1,7 +1,7 @@
 #include <SimpleTimer.h>
 #include "StreetLights.h"
 
-StreetLights::StreetLights(int frontPin, int backPin, int leftPin, int rightPin, int blinkRate = 500, bool amberDefault = false)
+StreetLights::StreetLights(int frontPin, int backPin, int leftPin, int rightPin, int blinkRate = 500, bool amberDefault = true)
     : BasicLights(frontPin, backPin, blinkRate)
 {
   _left = Light(leftPin);   // init the left Light with its pin

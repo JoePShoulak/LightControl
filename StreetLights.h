@@ -12,9 +12,9 @@ class StreetLights : public BasicLights
 {
 public:
   StreetLights(int frontPin, int backPin, int leftPin, int rightPin,
-               int blinkRate = 500, bool amberDefault = false); // Constructor, 4 pins for light control
-                                                                // blinkRate in ms (default 500)
-                                                                // amberDefault state (default false)
+               int blinkRate = 500, bool amberDefault = true); // Constructor, 4 pins for light control
+                                                               // blinkRate in ms (default 500)
+                                                               // amberDefault state (default false)
 
   virtual void begin() override;         // More lights, more pins, more begin functionality
   virtual void set(bool state) override; // More lights, must also update the set function
